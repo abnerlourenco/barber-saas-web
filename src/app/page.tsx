@@ -1,11 +1,11 @@
 import { SearchIcon } from "lucide-react"
 import Image from "next/image"
-import Header from "./_components/header"
-import { Avatar, AvatarImage } from "./_components/ui/avatar"
-import { Badge } from "./_components/ui/badge"
-import { Button } from "./_components/ui/button"
-import { Card, CardContent } from "./_components/ui/card"
-import { Input } from "./_components/ui/input"
+import Header from "../_components/header"
+import { Avatar, AvatarImage } from "../_components/ui/avatar"
+import { Badge } from "../_components/ui/badge"
+import { Button } from "../_components/ui/button"
+import { Card, CardContent } from "../_components/ui/card"
+import { Input } from "../_components/ui/input"
 
 export default function Home() {
   return (
@@ -31,9 +31,9 @@ export default function Home() {
           />
         </div>
 
-        <h2 className="mt-8 text-xs font-bold uppercase">Agendamentos</h2>
+        <h2 className="mt-6 mb-3 text-xs font-bold uppercase">Agendamentos</h2>
 
-        <Card className="mt-4 p-0">
+        <Card className="p-0">
           <CardContent className="flex justify-between p-0">
             <div className="flex flex-col gap-2 py-5 pl-5">
               <Badge>Confirmado</Badge>
@@ -57,6 +57,8 @@ export default function Home() {
             </div>
           </CardContent>
         </Card>
+
+        <h2 className="mt-6 mb-3 text-xs font-bold uppercase">Recomendados</h2>
       </div>
     </div>
   )
