@@ -123,6 +123,31 @@
   }
 }
 
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    display: block;
+    height: 16px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background: hsl(var(--foreground));
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: hsl(var(--primary));
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    border-radius: 8px;
+    background: hsl(252 100% 60%);
+  }
+
+  .custom-card {
+    background: hsl(225 9% 9%);
+  }
+}
+
 @keyframes accordion-down {
   from {
     height: 0;
