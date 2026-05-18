@@ -24,7 +24,7 @@ export default async function BarbershopCard({
         />
         <Badge className="absolute top-2 left-2" variant="secondary">
           <Star className="fill-primary text-primary" size={12} />
-          <p className="text-xs">5,0</p>
+          <p className="text-xs font-semibold">5,0</p>
         </Badge>
       </CardHeader>
 
@@ -36,7 +36,7 @@ export default async function BarbershopCard({
       </CardContent>
 
       <CardFooter className="max-w-45 px-1">
-        <Button variant="secondary" className="h-10 w-full">
+        <Button variant="secondary" className="h-10 w-full cursor-pointer">
           Reservar
         </Button>
       </CardFooter>
