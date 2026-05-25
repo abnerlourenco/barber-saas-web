@@ -1,6 +1,7 @@
 import { Barbershop } from "@/prisma/generated/client"
 import { Star } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card"
@@ -13,8 +14,8 @@ export default async function BarbershopCard({
   barbershop,
 }: BarbershopCardProps) {
   return (
-    <Card className="flex min-w-50 rounded-2xl p-2">
-      <CardHeader className="relative w-full p-0">
+    <Card className="flex min-w-50 flex-col gap-3 rounded-2xl p-2">
+      <CardHeader className="relative p-0">
         <Image
           src={barbershop.imageUrl}
           alt="barbershop image"
@@ -28,16 +29,20 @@ export default async function BarbershopCard({
         </Badge>
       </CardHeader>
 
-      <CardContent className="flex flex-col p-0 px-1">
+      <CardContent className="flex flex-col p-1">
         <div className="">
           <h3 className="truncate font-semibold">{barbershop.name}</h3>
           <p className="truncate text-sm text-gray-400">{barbershop.address}</p>
         </div>
       </CardContent>
 
-      <CardFooter className="max-w-45 px-1">
-        <Button variant="secondary" className="h-10 w-full cursor-pointer">
-          Reservar
+      <CardFooter className="max-w-45 px-0">
+        <Button
+          variant="secondary"
+          className="h-10 w-full cursor-pointer"
+          asChild
+        >
+          <Link href={`/barbershops/${barbershop.id}`}>Reservar</Link>
         </Button>
       </CardFooter>
     </Card>
