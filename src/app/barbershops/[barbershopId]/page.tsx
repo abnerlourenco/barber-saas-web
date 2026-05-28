@@ -91,7 +91,7 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
       {/* Contact */}
       <div className="mb-5 space-y-3 p-5">
         <h2 className="text-xs font-bold text-gray-400 uppercase">Contato</h2>
-        {barbershop.phones.map((phone) => (
+        {Array.from(new Set(barbershop.phones)).map((phone) => (
           <PhoneItem phone={phone} key={phone} />
         ))}
       </div>
