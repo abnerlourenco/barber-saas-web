@@ -45,7 +45,7 @@ export default async function Home() {
         {/* Recomendados */}
         <h2 className="mt-6 mb-3 text-xs font-bold uppercase">Recomendados</h2>
 
-        <div className="flex gap-4 overflow-auto overflow-x-scroll pb-2 [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-4 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden">
           {barbershops.map((barbershop) => (
             <BarbershopCard key={barbershop.id} barbershop={barbershop} />
           ))}
@@ -54,7 +54,7 @@ export default async function Home() {
         {/* Populares */}
         <h2 className="mt-6 mb-3 text-xs font-bold uppercase">Populares</h2>
 
-        <div className="flex gap-4 overflow-auto overflow-x-scroll pb-2 [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-4 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden">
           {barbershops.map((barbershop) => (
             <BarbershopCard key={barbershop.id} barbershop={barbershop} />
           ))}
@@ -65,7 +65,7 @@ export default async function Home() {
           Mais Visitados
         </h2>
 
-        <div className="flex gap-4 overflow-auto overflow-x-scroll pb-2 [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-4 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden">
           {barbershops.map((barbershop) => (
             <BarbershopCard key={barbershop.id} barbershop={barbershop} />
           ))}
