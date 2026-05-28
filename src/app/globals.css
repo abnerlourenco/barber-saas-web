@@ -8,6 +8,9 @@
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
+  --fill-primary: hsl(var(--primary));
+  --fill-secundary: hsl(var(--secondary));
+
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
 

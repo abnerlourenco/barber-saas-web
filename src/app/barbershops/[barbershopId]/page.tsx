@@ -1,5 +1,5 @@
 import ErrorPage from "@/src/_components/error-page"
-import Footer from "@/src/_components/footer"
+import PhoneItem from "@/src/_components/phone-item"
 import ServiceItem from "@/src/_components/service-item"
 import { Button } from "@/src/_components/ui/button"
 import { db } from "@/src/_lib/prisma"
@@ -29,6 +29,7 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
 
   return (
     <div>
+      {/* Image */}
       <div className="relative h-62.5 w-full">
         <Image
           alt={barbershop.name}
@@ -57,6 +58,7 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
         </Button>
       </div>
 
+      {/* Title */}
       <div className="border-b border-solid p-5">
         <h1 className="mb-3 text-xl font-bold">{barbershop.name}</h1>
         <div className="mb-2 flex items-center gap-2">
@@ -70,12 +72,14 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
         </div>
       </div>
 
+      {/* Description */}
       <div className="space-y-2 border-b border-solid p-5">
         <h2 className="text-xs font-bold text-gray-400 uppercase">Sobre nós</h2>
         <p className="text-justify text-sm">{barbershop.description}</p>
       </div>
 
-      <div className="space-y-3 p-5">
+      {/* Services */}
+      <div className="space-y-3 border-b border-solid p-5">
         <h2 className="text-xs font-bold text-gray-400 uppercase">Serviços</h2>
         <div className="space-y-3">
           {barbershop.barbershopServices.map((service) => (
@@ -84,7 +88,13 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
         </div>
       </div>
 
-      <Footer />
+      {/* Contact */}
+      <div className="mb-5 space-y-3 p-5">
+        <h2 className="text-xs font-bold text-gray-400 uppercase">Contato</h2>
+        {barbershop.phones.map((phone) => (
+          <PhoneItem phone={phone} key={phone} />
+        ))}
+      </div>
     </div>
   )
 }

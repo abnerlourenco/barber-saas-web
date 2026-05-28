@@ -3,7 +3,6 @@ import Image from "next/image"
 import BarbershopCard from "../_components/barbershop-card"
 import BookingItem from "../_components/booking-item"
 import FastSearchButton from "../_components/fast-search-button"
-import Footer from "../_components/footer"
 import Header from "../_components/header"
 import { Button } from "../_components/ui/button"
 import { Input } from "../_components/ui/input"
@@ -71,8 +70,6 @@ export default async function Home() {
           ))}
         </div>
       </div>
-
-      <Footer />
     </div>
   )
 }
