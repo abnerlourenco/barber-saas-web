@@ -10,9 +10,7 @@ interface BarbershopCardProps {
   barbershop: Barbershop
 }
 
-export default async function BarbershopCard({
-  barbershop,
-}: BarbershopCardProps) {
+export default function BarbershopCard({ barbershop }: BarbershopCardProps) {
   return (
     <Card className="min-w-48 rounded-2xl p-1">
       <CardContent className="p-0">
@@ -28,7 +26,7 @@ export default async function BarbershopCard({
             variant="secondary"
           >
             <Star className="fill-primary text-primary" size={12} />
-            <p className="text-xs font-semibold">5,0</p>
+            <span className="text-xs font-semibold">5,0</span>
           </Badge>
         </div>
 

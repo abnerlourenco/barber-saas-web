@@ -29,7 +29,7 @@ export default function PhoneItem({ phone }: PhoneItemProps) {
         <SmartphoneIcon />
         <p className="text-sm font-semibold">{phone}</p>
       </div>
-      <div className="items flex space-x-3 bg-center">
+      <div className="flex items-center space-x-3 bg-center">
         <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
           <Button size={"icon"} variant={"outline"}>
             <Image

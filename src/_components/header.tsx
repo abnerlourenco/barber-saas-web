@@ -10,7 +10,13 @@ export default function Header() {
     <header>
       <Card className="custom-card rounded-t-none border-none">
         <CardContent className={"flex flex-row items-center justify-between"}>
-          <Image alt="FSW Barber" src="/logo.png" height={18} width={120} />
+          <Image
+            alt="FSW Barber"
+            src="/logo.png"
+            height={18}
+            width={120}
+            className="w-auto"
+          />
 
           <Sheet>
             <SheetTrigger asChild>

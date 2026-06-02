@@ -1,10 +1,11 @@
-import { CalendarIcon, HomeIcon, LogOutIcon } from "lucide-react"
+import { CalendarIcon, HomeIcon, LogInIcon, LogOutIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { fastSearchOptions } from "./fast-search-button"
 import LoginDialog from "./login-dialog"
 import LogoutDialog from "./logout-dialog"
 import { Button } from "./ui/button"
+import { Dialog, DialogTrigger } from "./ui/dialog"
 import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
 
 export default function Sidebar() {
@@ -17,7 +18,15 @@ export default function Sidebar() {
       {/* Avatar */}
       <div className="flex items-center justify-between gap-3 border-b border-solid px-5 pb-5">
         <h2 className="font-bold">Olá faça seu login</h2>
-        <LoginDialog />
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button size={"icon"}>
+              <LogInIcon />
+            </Button>
+          </DialogTrigger>
+
+          <LoginDialog />
+        </Dialog>
         {/* <Avatar className="h-16 w-16">
          <AvatarImage src="https://github.com/abnerlourenco.png" />
         </Avatar>
@@ -83,12 +92,19 @@ export default function Sidebar() {
 
       {/* Exit button */}
       <div className="flex flex-col gap-2 px-5 pb-5">
-        <LogoutDialog>
-          <Button size={"lg"} className="justify-start gap-2" variant={"ghost"}>
-            <LogOutIcon size={18} />
-            Sair da conta
-          </Button>
-        </LogoutDialog>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              size={"lg"}
+              className="justify-start gap-2"
+              variant={"ghost"}
+            >
+              <LogOutIcon size={18} />
+              Sair da conta
+            </Button>
+          </DialogTrigger>
+          <LogoutDialog />
+        </Dialog>
       </div>
     </SheetContent>
   )

@@ -35,6 +35,7 @@ export default async function Home() {
             alt="Agende nas melhores com FSW Barber"
             src={"/banner-01.png"}
             fill
+            priority
             className="rounded-xl object-contain"
           />
         </div>
