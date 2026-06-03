@@ -8,13 +8,13 @@ import { Sheet, SheetTrigger } from "./ui/sheet"
 export default function Header() {
   return (
     <header>
-      <Card className="custom-card rounded-t-none border-none">
+      <Card className="custom-card rounded-t-none border-none py-4">
         <CardContent className={"flex flex-row items-center justify-between"}>
           <Image
-            alt="FSW Barber"
+            alt="Barber Go barbershops"
             src="/logo.png"
-            height={18}
-            width={120}
+            height={30}
+            width={150}
             className="w-auto"
           />
 
