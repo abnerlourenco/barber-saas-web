@@ -1,16 +1,16 @@
 "use client"
 
 import { SearchIcon } from "lucide-react"
-import { useRouter } from "next/router"
 import { useState } from "react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
+import { useRouter } from "next/navigation"
 
 export default function InputSearchButton() {
   const [search, setSearch] = useState("")
   const router = useRouter()
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefaut()
     router.push(`/barbershops?search=${search}`)
   }

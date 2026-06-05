@@ -1,13 +1,11 @@
+import InputSearchButton from "@/_components/input-search-button"
 import UserHeader from "@/_components/user-header"
 import { db } from "@/_lib/prisma"
-import { SearchIcon } from "lucide-react"
 import Image from "next/image"
 import BarbershopCard from "../_components/barbershop-card"
 import BookingItem from "../_components/booking-item"
 import FastSearchButton from "../_components/fast-search-button"
 import Header from "../_components/header"
-import { Button } from "../_components/ui/button"
-import { Input } from "../_components/ui/input"
 
 // TODO: Receive BookingItem by props
 
@@ -21,11 +19,8 @@ export default async function Home() {
       <div className="p-5">
         <UserHeader variant="home" />
 
-        <div className="mt-6 flex items-center gap-2">
-          <Input placeholder="Faça sua busca..." />
-          <Button>
-            <SearchIcon />
-          </Button>
+        <div className="mt-6">
+          <InputSearchButton />
         </div>
 
         <FastSearchButton />
