@@ -181,7 +181,7 @@ export type BarbershopGroupByOutputType = {
   _max: BarbershopMaxAggregateOutputType | null
 }
 
-type GetBarbershopGroupByPayload<T extends BarbershopGroupByArgs> =
+export type GetBarbershopGroupByPayload<T extends BarbershopGroupByArgs> =
   Prisma.PrismaPromise<
     Array<
       Prisma.PickEnumerable<BarbershopGroupByOutputType, T["by"]> & {
@@ -1492,6 +1492,11 @@ export type BarbershopFindManyArgs<
    * Skip the first `n` Barbershops.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of Barbershops.
+   */
   distinct?:
     | Prisma.BarbershopScalarFieldEnum
     | Prisma.BarbershopScalarFieldEnum[]

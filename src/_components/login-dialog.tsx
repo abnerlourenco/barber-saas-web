@@ -1,3 +1,6 @@
+"use client"
+
+import { signIn } from "next-auth/react"
 import Image from "next/image"
 import { Button } from "./ui/button"
 import {
@@ -20,6 +23,7 @@ export default function LoginDialog() {
           size={"lg"}
           variant={"outline"}
           className="cursor-pointer gap-2 font-bold"
+          onClick={handleLoginWithGoogleClick}
         >
           <Image src="/google.svg" alt="Google login" width={20} height={20} />
           Google
@@ -28,3 +32,5 @@ export default function LoginDialog() {
     </DialogContent>
   )
 }
+
+export const handleLoginWithGoogleClick = () => signIn("google")

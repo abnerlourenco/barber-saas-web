@@ -49,22 +49,11 @@ export default function FastSearchButton() {
           variant="secondary"
           key={option.title}
         >
-          {/* Image ligth theme */}
           <Image
-            src={option.imageUrl}
+            src={option.darkImageUrl}
             width={16}
             height={16}
             alt={option.title}
-            className="block dark:hidden"
-          />
-
-          {/* Image dark theme*/}
-          <Image
-            src={option.darkImageUrl || option.imageUrl}
-            width={16}
-            height={16}
-            alt={option.title}
-            className="hidden dark:block"
           />
           {option.title}
         </Button>

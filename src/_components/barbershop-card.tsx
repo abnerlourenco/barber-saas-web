@@ -1,7 +1,7 @@
-import { Barbershop } from "@/prisma/generated/client"
 import { Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { Barbershop } from "../../prisma/generated/browser"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { Card, CardContent } from "./ui/card"

@@ -1,4 +1,4 @@
-import { db } from "@/src/_lib/prisma"
+import { db } from "@/_lib/prisma"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"

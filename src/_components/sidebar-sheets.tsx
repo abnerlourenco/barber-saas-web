@@ -20,8 +20,10 @@ export default function Sidebar() {
         <h2 className="font-bold">Olá faça seu login</h2>
         <Dialog>
           <DialogTrigger asChild>
-            <Button size={"icon"}>
-              <LogInIcon />
+            <Button size={"icon"} asChild>
+              <span>
+                <LogInIcon />
+              </span>
             </Button>
           </DialogTrigger>
 
@@ -67,24 +69,13 @@ export default function Sidebar() {
             className="h-11 justify-start gap-2"
             key={options.title}
           >
-            {/* Image ligth theme */}
             <Image
               alt={options.title}
-              src={options.imageUrl}
+              src={options.darkImageUrl}
               width={18}
               height={18}
-              className="block object-contain dark:hidden"
+              className="object-contain"
             />
-
-            {/* Image dark theme*/}
-            <Image
-              alt={options.title}
-              src={options.darkImageUrl || options.imageUrl}
-              width={18}
-              height={18}
-              className="hidden object-contain dark:block"
-            />
-
             {options.title}
           </Button>
         ))}
@@ -103,6 +94,7 @@ export default function Sidebar() {
               Sair da conta
             </Button>
           </DialogTrigger>
+
           <LogoutDialog />
         </Dialog>
       </div>

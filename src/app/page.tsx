@@ -1,3 +1,4 @@
+import { db } from "@/_lib/prisma"
 import { SearchIcon } from "lucide-react"
 import Image from "next/image"
 import BarbershopCard from "../_components/barbershop-card"
@@ -6,7 +7,6 @@ import FastSearchButton from "../_components/fast-search-button"
 import Header from "../_components/header"
 import { Button } from "../_components/ui/button"
 import { Input } from "../_components/ui/input"
-import { db } from "../_lib/prisma"
 
 // TODO: Receive BookingItem by props
 

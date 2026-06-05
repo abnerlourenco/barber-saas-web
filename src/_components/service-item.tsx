@@ -1,6 +1,6 @@
-import { BarbershopService } from "@/prisma/generated/client"
 import Image from "next/image"
 import Link from "next/link"
+import { BarbershopService } from "../../prisma/generated/browser"
 import { Button } from "./ui/button"
 import { Card, CardContent } from "./ui/card"
 

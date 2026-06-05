@@ -1,6 +1,5 @@
 "use client"
 
-import whatsappIcon from "@/public/whatsapp.svg" // Ajuste o caminho conforme seu projeto
 import { Copy, SmartphoneIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -33,7 +32,7 @@ export default function PhoneItem({ phone }: PhoneItemProps) {
         <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
           <Button size={"icon"} variant={"outline"}>
             <Image
-              src={whatsappIcon}
+              src="/whatsapp.svg"
               alt="Icone do WhatsApp"
               width={20}
               height={20}

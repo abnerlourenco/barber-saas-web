@@ -7,8 +7,12 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from "./models/Account"
+export type * from "./models/Session"
 export type * from "./models/User"
+export type * from "./models/VerificationToken"
 export type * from "./models/Barbershop"
 export type * from "./models/BarbershopService"
 export type * from "./models/Booking"
+export type * from "./models/Rating"
 export type * from "./commonInputTypes"
