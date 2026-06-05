@@ -14,8 +14,7 @@ export default function Header() {
             alt="Barber Go barbershops"
             src="/logo.png"
             height={18}
-            width={118}
-            className="w-auto"
+            width={120}
           />
 
           <Sheet>

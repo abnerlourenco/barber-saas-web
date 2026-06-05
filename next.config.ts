@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ hostname: "utfs.io" }],
   },
+  allowedDevOrigins: ["*"],
 }
 
 export default nextConfig
