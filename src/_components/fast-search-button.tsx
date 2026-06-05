@@ -50,7 +50,7 @@ export default function FastSearchButton() {
           key={option.title}
         >
           <Image
-            src={option.darkImageUrl}
+            src={option.imageUrl}
             width={16}
             height={16}
             alt={option.title}

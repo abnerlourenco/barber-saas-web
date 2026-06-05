@@ -1,3 +1,6 @@
+"use client"
+
+import { signOut } from "next-auth/react"
 import { Button } from "./ui/button"
 import {
   DialogClose,
@@ -25,15 +28,20 @@ export default function LogoutDialog() {
             </Button>
           </DialogClose>
 
-          <Button
-            size={"lg"}
-            className="flex-1 cursor-pointer"
-            variant={"destructive"}
-          >
-            Sair
-          </Button>
+          <DialogClose asChild>
+            <Button
+              size={"lg"}
+              className="flex-1 cursor-pointer"
+              variant={"destructive"}
+              onClick={handleLogoutClick}
+            >
+              Sair
+            </Button>
+          </DialogClose>
         </div>
       </DialogHeader>
     </DialogContent>
   )
 }
+
+export const handleLogoutClick = () => signOut()

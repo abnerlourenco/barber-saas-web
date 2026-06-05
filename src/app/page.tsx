@@ -1,3 +1,4 @@
+import UserHeader from "@/_components/user-header"
 import { db } from "@/_lib/prisma"
 import { SearchIcon } from "lucide-react"
 import Image from "next/image"
@@ -18,8 +19,7 @@ export default async function Home() {
       <Header />
 
       <div className="p-5">
-        <h2 className="text-xl font-bold">Olá, Abner!</h2>
-        <p>Quinta-Feira, 13 de Fevereiro.</p>
+        <UserHeader variant="home" />
 
         <div className="mt-6 flex items-center gap-2">
           <Input placeholder="Faça sua busca..." />
