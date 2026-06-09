@@ -43,20 +43,25 @@ export default function Sidebar() {
       {/* QuickAccess */}
       <div className="flex flex-col gap-2 border-b border-solid px-5 pt-0 pb-5">
         {fastSearchOptions.map((options) => (
-          <Button
-            variant="ghost"
-            className="h-11 justify-start gap-2"
-            key={options.title}
-          >
-            <Image
-              alt={options.title}
-              src={options.imageUrl}
-              width={18}
-              height={18}
-              className="object-contain"
-            />
-            {options.title}
-          </Button>
+          <SheetClose asChild key={options.title}>
+            <Button
+              variant="ghost"
+              className="h-11 justify-start gap-2"
+              key={options.title}
+              asChild
+            >
+              <Link href={`/barbershops?search=${options.title}`}>
+                <Image
+                  alt={options.title}
+                  src={options.imageUrl}
+                  width={18}
+                  height={18}
+                  className="object-contain"
+                />
+                {options.title}
+              </Link>
+            </Button>
+          </SheetClose>
         ))}
       </div>
 

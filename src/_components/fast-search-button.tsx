@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "./ui/button"
 
 interface fastSearchOptions {
@@ -48,14 +49,17 @@ export default function FastSearchButton() {
           className="cursor-pointer gap-2"
           variant="secondary"
           key={option.title}
+          asChild
         >
-          <Image
-            src={option.imageUrl}
-            width={16}
-            height={16}
-            alt={option.title}
-          />
-          {option.title}
+          <Link href={`/barbershops?search=${option.title}`}>
+            <Image
+              src={option.imageUrl}
+              width={16}
+              height={16}
+              alt={option.title}
+            />
+            {option.title}
+          </Link>
         </Button>
       ))}
     </div>

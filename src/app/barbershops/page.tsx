@@ -12,14 +12,27 @@ interface BarbershopsPageProps {
 export default async function BarbershopsPage({
   searchParams,
 }: BarbershopsPageProps) {
-  const search = (await searchParams).search
+  const search = searchParams
 
   const barbershops = await db.barbershop.findMany({
     where: {
-      name: {
-        contains: search,
-        mode: "insensitive",
-      },
+      OR: [
+        {
+          name: {
+            contains: (await searchParams).search,
+            mode: "insensitive",
+          },
+        },
+        {
+          barbershopServices: {
+            some: {
+              name: {
+                contains: (await searchParams).search,
+              },
+            },
+          },
+        },
+      ],
     },
   })
 
@@ -32,7 +45,7 @@ export default async function BarbershopsPage({
         </div>
 
         <h2 className="mt-6 mb-3 text-xs font-semibold">
-          Resultados para &quot;{search}&quot;
+          Resultados para &quot;{(await searchParams).search}&quot;
         </h2>
 
         <div className="grid grid-cols-2 gap-4">
