@@ -5,6 +5,8 @@ import InputSearchButton from "@/_components/input-search-button"
 import { db } from "@/_lib/prisma"
 import { Prisma } from "../../../prisma/generated/client"
 
+// TODO apply rating filter search
+
 interface BarbershopsPageProps {
   searchParams: Promise<{
     services?: string

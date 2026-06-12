@@ -8,6 +8,7 @@ import FastSearchButton from "../_components/fast-search-button"
 import Header from "../_components/header"
 
 // TODO: Receive BookingItem by props
+// TODO: Create a booking with the employee of your choice.
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})

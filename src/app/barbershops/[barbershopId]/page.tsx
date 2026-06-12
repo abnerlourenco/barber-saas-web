@@ -13,6 +13,10 @@ interface BarbershopPageProps {
   params: Promise<{ barbershopId: string }>
 }
 
+// TODO Add barbershop opening hours
+// TODO add payment methods
+// TODO add employees
+
 export default async function BarbershopPage({ params }: BarbershopPageProps) {
   const { barbershopId } = await params
 

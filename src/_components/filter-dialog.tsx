@@ -18,7 +18,7 @@ import {
 import { Label } from "./ui/label"
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group"
 
-// Lista estática de exemplo para os serviços. No futuro você pode buscar isso do banco.
+// TODO Connect with services in the database
 const AVAILABLE_SERVICES = [
   { id: "cabelo", label: "Cabelo" },
   { id: "barba", label: "Barba" },

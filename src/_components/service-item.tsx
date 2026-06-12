@@ -1,8 +1,9 @@
 import Image from "next/image"
-import Link from "next/link"
 import { BarbershopService } from "../../prisma/generated/browser"
+import BookingServiceContent from "./booking-service-content"
 import { Button } from "./ui/button"
 import { Card, CardContent } from "./ui/card"
+import { Sheet, SheetTrigger } from "./ui/sheet"
 
 interface ServiceItemProps {
   service: BarbershopService
@@ -36,9 +37,16 @@ export default function ServiceItem({ service }: ServiceItemProps) {
                 currency: "BRL",
               }).format(Number(service.price))}
             </p>
-            <Button size={"sm"} className="cursor-pointer">
-              <Link href={"/"}>Reservar</Link>
-            </Button>
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button size={"sm"} className="cursor-pointer">
+                  Reservar
+                </Button>
+              </SheetTrigger>
+
+              <BookingServiceContent />
+            </Sheet>
           </div>
         </div>
       </CardContent>
