@@ -7,9 +7,20 @@ import { Sheet, SheetTrigger } from "./ui/sheet"
 
 interface ServiceItemProps {
   service: BarbershopService
+  barbershopName: string
 }
 
-export default function ServiceItem({ service }: ServiceItemProps) {
+export default function ServiceItem({
+  service,
+  barbershopName,
+}: ServiceItemProps) {
+  const bookingService = {
+    id: service.id,
+    name: service.name,
+    price: Number(service.price),
+    barbershopId: service.barbershopId,
+  }
+
   return (
     <Card className="p-0">
       <CardContent className="item-center flex gap-3 p-3">
@@ -35,7 +46,7 @@ export default function ServiceItem({ service }: ServiceItemProps) {
               {Intl.NumberFormat("pt-BR", {
                 style: "currency",
                 currency: "BRL",
-              }).format(Number(service.price))}
+              }).format(bookingService.price)}
             </p>
 
             <Sheet>
@@ -45,7 +56,10 @@ export default function ServiceItem({ service }: ServiceItemProps) {
                 </Button>
               </SheetTrigger>
 
-              <BookingServiceContent />
+              <BookingServiceContent
+                service={bookingService}
+                barbershopName={barbershopName}
+              />
             </Sheet>
           </div>
         </div>

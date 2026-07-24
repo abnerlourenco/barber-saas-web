@@ -12,7 +12,7 @@ interface BarbershopCardProps {
 
 export default function BarbershopCard({ barbershop }: BarbershopCardProps) {
   return (
-    <Card className="min-w-48 rounded-2xl p-1">
+    <Card className="max-w-68 min-w-48 rounded-2xl p-1">
       <CardContent className="p-0">
         <div className="relative h-39.75 w-full">
           <Image
