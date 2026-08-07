@@ -159,7 +159,6 @@ export default function BookingServiceContent({
 
       await createBooking({
         serviceId: service.id,
-        userId: session.user.id,
         date: newDate,
       })
 
