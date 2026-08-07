@@ -6,7 +6,12 @@ interface NotificationCardProps extends ComponentProps<"div"> {
   visible: boolean
 }
 
-export function showNotification(setVisible: (visible: boolean) => void) {
+export function showNotification(
+  setVisible: (visible: boolean) => void,
+  setNotificationMessage: (message: string) => void,
+  message: string,
+) {
+  setNotificationMessage(message)
   setVisible(true)
   setTimeout(() => setVisible(false), 4000)
 }

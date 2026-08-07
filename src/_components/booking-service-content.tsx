@@ -1,14 +1,19 @@
 "use client"
 
 import createBooking from "@/_actions/create_booking"
-import { formatDate, set } from "date-fns"
+import { getBookings } from "@/_actions/get_bookings"
+import { ensureAuthenticated } from "@/utils/auth"
+import { formatDate, set, startOfDay } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { useSession } from "next-auth/react"
-import { useState } from "react"
-import { toast } from "sonner"
+import { useEffect, useState } from "react"
+import { Booking } from "../../prisma/generated/client"
+import LoginDialog from "./login-dialog"
+import NotificationCard, { showNotification } from "./show-notification"
 import { Button } from "./ui/button"
 import { Calendar } from "./ui/calendar"
 import { Card, CardContent } from "./ui/card"
+import { Dialog } from "./ui/dialog"
 import {
   SheetClose,
   SheetContent,
@@ -26,10 +31,11 @@ interface ServiceBookingProps {
   barbershopName: string
 }
 
-// TODO: Nao apresentar horarios com agendamentos
-// TODO: somente reserva com usuário logado, redirect para fazer login
-// TODO: Não permitir agendar com data anterior a hoje
+// TODO: Não permitir agendar com horario e dia já utilizado
 // TODO: Agendamento somente em 1 horas de antecedencia
+// TODO: persistir horarios pelo banco de dados da barbearia
+// TODO: ajustar state de data e hora ao fechar Sheet
+// TODO: ajustar notification ao finalizar agendamento
 
 const TIME_LIST = [
   "08:00",
@@ -55,17 +61,72 @@ const TIME_LIST = [
   "18:00",
 ]
 
+const getTimeList = (bookings: Booking[]) => {
+  return TIME_LIST.filter((time) => {
+    const hour = Number(time.split(":")[0])
+    const minute = Number(time.split(":")[1])
+
+    const hasBookingOnCurrentTime = bookings.some(
+      (booking) =>
+        booking.date.getHours() === hour &&
+        booking.date.getMinutes() === minute,
+    )
+
+    if (hasBookingOnCurrentTime) {
+      return false
+    }
+
+    return true
+  })
+}
+
 export default function BookingServiceContent({
   service,
   barbershopName,
 }: ServiceBookingProps) {
-  const { data } = useSession()
+  const { data, status } = useSession()
 
   const [selectDate, setSelectDate] = useState<Date | undefined>(undefined)
   const [selectTime, setSelectTime] = useState<string | undefined>(undefined)
 
+  const [loginOpen, setLoginOpen] = useState(false)
+
+  const [visible, setVisible] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState("")
+
+  const [dayBookings, setDayBookings] = useState<Booking[]>([])
+
+  const today = startOfDay(new Date())
+
+  useEffect(() => {
+    const fetch = async () => {
+      if (!selectDate) return
+      const bookings = await getBookings({
+        date: selectDate,
+        serviceId: service.id,
+      })
+
+      setDayBookings(bookings)
+    }
+    fetch()
+  }, [selectDate, service.id])
+
+  const getAuthenticatedSession = () =>
+    ensureAuthenticated(status, data, () => {
+      showNotification(
+        setVisible,
+        setNotificationMessage,
+        "Login é necessário para realizar agendamento",
+      )
+
+      setLoginOpen(true)
+    })
+
   const handleDateSelect = (date: Date | undefined) => {
+    if (!getAuthenticatedSession()) return
+
     setSelectDate(date)
+    setSelectTime(undefined)
   }
 
   const handleTimeSelect = (time: string | undefined) => {
@@ -75,6 +136,9 @@ export default function BookingServiceContent({
   const handleCreateBooking = async () => {
     try {
       if (!selectDate || !selectTime) return
+
+      const session = getAuthenticatedSession()
+      if (!session) return
 
       const hour = Number(selectTime.split(":")[0])
       const minute = Number(selectTime.split(":")[1])
@@ -86,15 +150,28 @@ export default function BookingServiceContent({
 
       await createBooking({
         serviceId: service.id,
-        userId: data?.user.id,
+        userId: session.user.id,
         date: newDate,
       })
 
-      toast.success("Reserva criada com sucesso!")
+      showNotification(
+        setVisible,
+        setNotificationMessage,
+        "Reserva criada com sucesso!",
+      )
     } catch (error) {
       console.error(error)
-      toast.error("Erro ao criar reserva!")
+
+      showNotification(
+        setVisible,
+        setNotificationMessage,
+        "Erro ao criar reserva!",
+      )
     }
+
+    setSelectDate(undefined)
+    setSelectTime(undefined)
+    setDayBookings([])
   }
 
   return (
@@ -111,6 +188,7 @@ export default function BookingServiceContent({
           locale={ptBR}
           selected={selectDate}
           onSelect={handleDateSelect}
+          disabled={{ before: today }}
           styles={{
             button_previous: {
               width: "32px",
@@ -136,7 +214,7 @@ export default function BookingServiceContent({
 
       {selectDate && (
         <div className="flex gap-3 overflow-x-auto border-b border-solid p-4 [&::-webkit-scrollbar]:hidden">
-          {TIME_LIST.map((time) => (
+          {getTimeList(dayBookings).map((time) => (
             <Button
               key={time}
               variant={selectTime == time ? "default" : "outline"}
@@ -188,6 +266,12 @@ export default function BookingServiceContent({
           </SheetClose>
         </SheetFooter>
       )}
+
+      <Dialog open={loginOpen} onOpenChange={setLoginOpen}>
+        <LoginDialog />
+      </Dialog>
+
+      <NotificationCard visible={visible} message={notificationMessage} />
     </SheetContent>
   )
 }
