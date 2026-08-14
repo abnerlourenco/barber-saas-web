@@ -14,14 +14,14 @@ export default async function createBooking({
   serviceId,
   date,
 }: CreateBookingParams) {
-  const user = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
 
-  if (!user) {
+  if (!session?.user) {
     throw new Error("Usuário não autenticado!")
   }
 
   await db.booking.create({
-    data: { serviceId, date, userId: user?.user.id },
+    data: { serviceId, date, userId: session?.user.id },
   })
 
   revalidatePath("/barbershops/[id]")

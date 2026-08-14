@@ -1,6 +1,8 @@
 import InputSearchButton from "@/_components/input-search-button"
 import UserHeader from "@/_components/user-header"
+import { authOptions } from "@/_lib/auth"
 import { db } from "@/_lib/prisma"
+import { getServerSession } from "next-auth"
 import Image from "next/image"
 import BarbershopCard from "../_components/barbershop-card"
 import BookingItem from "../_components/booking-item"
@@ -11,7 +13,30 @@ import Header from "../_components/header"
 // TODO: Create a booking with the employee of your choice.
 
 export default async function Home() {
+  const session = await getServerSession(authOptions)
+
   const barbershops = await db.barbershop.findMany({})
+
+  const confirmedBookings = session?.user
+    ? await db.booking.findMany({
+        where: {
+          userId: session?.user.id,
+          date: {
+            gte: new Date(),
+          },
+        },
+        include: {
+          barbershopService: {
+            include: {
+              barbershop: true,
+            },
+          },
+        },
+        orderBy: {
+          date: "asc",
+        },
+      })
+    : []
 
   return (
     <div>
@@ -36,7 +61,19 @@ export default async function Home() {
           />
         </div>
 
-        <BookingItem />
+        {session?.user && (
+          <div>
+            <h2 className="mt-6 mb-3 text-xs font-bold uppercase">
+              Meus Agendamentos
+            </h2>
+
+            <div className="flex gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+              {confirmedBookings.map((booking) => (
+                <BookingItem key={booking.id} booking={booking} />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Recomendados */}
         <h2 className="mt-6 mb-3 text-xs font-bold uppercase">Recomendados</h2>

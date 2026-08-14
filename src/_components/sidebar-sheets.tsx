@@ -32,7 +32,7 @@ export default function Sidebar() {
 
         <SheetClose asChild>
           <Button className="h-11 justify-start gap-2" variant="ghost" asChild>
-            <Link href="/agendamentos">
+            <Link href="/bookings">
               <CalendarIcon size={18} />
               Agendamentos
             </Link>

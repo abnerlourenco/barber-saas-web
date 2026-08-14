@@ -112,8 +112,8 @@ export default function BookingServiceContent({
     fetch()
   }, [selectDate, service.id])
 
-  const getAuthenticatedSession = () =>
-    ensureAuthenticated(status, data, () => {
+  const getAuthenticatedSession = () => {
+    return ensureAuthenticated(status, data, () => {
       showNotification(
         setVisible,
         setNotificationMessage,
@@ -122,6 +122,7 @@ export default function BookingServiceContent({
 
       setLoginOpen(true)
     })
+  }
 
   const handleDateSelect = (date: Date | undefined) => {
     if (!getAuthenticatedSession()) return
